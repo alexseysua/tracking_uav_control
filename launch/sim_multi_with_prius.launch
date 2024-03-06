@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="vehicle" default="miniyy_gimbal_camera" />
+	<arg name="background" default="empty" />
+
+	<include file="$(find fw_control)/launch/multi_uav_mavros_sitl.launch">
+		<arg name="vehicle" value="$(arg vehicle)"/>
+		<arg name="world" value="$(find mavlink_sitl_gazebo)/worlds/$(arg background).world"/>
+	</include>
+
+	<!-- spawn prius -->
+	<arg name="model" default="$(find prius_description)/urdf/prius.urdf"/>
+    <param name="robot_description" textfile="$(arg model)"/>
+
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="very_inaccurate_odom" args="0 0 0 0 0 0 odom base_link"/>
+
+	<node name="" pkg="gazebo_ros" type="spawn_model" 
+	args="-file $(arg model) -urdf -x 2 -y 10 -z 0.0 -Y 0 -model prius" />
+
+
+		
+</launch>
+

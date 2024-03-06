@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="vehicle" default="fw_gimbal_camera" />
+	<arg name="background" default="empty" />
+    <arg name="pos_x" default="0" />
+    <arg name="pos_y" default="-5" />
+    <arg name="pos_z" default="0" />
+    <rosparam file="$(find fw_control)/config/params_ibvs.yaml"/>
+    
+	
+	<include file="$(find px4)/launch/mavros_posix_sitl.launch">
+	<!-- MAVROS posix SITL environment launch script -->
+		<!-- launches MAVROS, PX4 SITL, Gazebo environment, and spawns vehicle -->
+		<!-- vehicle pose -->
+		<arg name="x" value="$(arg pos_x)"/>
+		<arg name="y" value="$(arg pos_y)"/>
+		<arg name="z" value="$(arg pos_z)"/>
+		<arg name="R" value="0"/>
+		<arg name="P" value="0"/>
+		<arg name="Y" value="0"/>
+		<!-- vehicle model and world -->
+		<arg name="est" value="ekf2"/>
+		<arg name="vehicle" value="$(arg vehicle)"/>
+		<!-- <arg name="world" value="$(find mavlink_sitl_gazebo)/worlds/mcmillan_airfield.world"/> -->
+		<arg name="world" value="$(find mavlink_sitl_gazebo)/worlds/$(arg background).world"/>
+		<arg name="sdf" value="$(find mavlink_sitl_gazebo)/models/$(arg vehicle)/$(arg vehicle).sdf"/>
+
+		<!-- gazebo configs -->
+		<arg name="gui" value="true"/>
+		<arg name="debug" value="false"/>
+		<arg name="verbose" value="false"/>
+		<arg name="paused" value="false"/>
+		<arg name="respawn_gazebo" value="false"/>
+		<!-- MAVROS configs -->
+		<arg name="fcu_url" value="udp://:14540@localhost:14557"/>
+		<arg name="respawn_mavros" value="false"/>
+		<!-- PX4 configs -->
+		<arg name="interactive" value="true"/>
+	</include>
+	
+
+	<!-- spawn prius -->
+	<arg name="model" default="$(find prius_description)/urdf/prius_ball_shape.urdf"/>
+    <param name="robot_description" textfile="$(arg model)"/>
+
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
+    <node pkg="tf2_ros" type="static_transform_publisher" name="very_inaccurate_odom" args="0 0 0 0 0 0 odom base_link"/>
+
+	<node name="" pkg="gazebo_ros" type="spawn_model" 
+	args="-file $(find prius_description)/urdf/prius.urdf -urdf -x 50 -y 150 -z 0.0 -Y 0 -model prius"/>
+</launch>
+
