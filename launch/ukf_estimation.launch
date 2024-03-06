@@ -2,7 +2,7 @@
 <launch>
 
     <group ns="uav0">
-        <node pkg="fw_control" name="target_estimate_v1s1" type="target_estimate_v1s1" output="screen" />
+        <node pkg="tracking_uav_control" name="target_estimate_v1s1" type="target_estimate_v1s1" output="screen" />
 
         <!-- Target Estimation Initial Process Covariance -->
         <!-- x1, x2, x3, rq, vq -->

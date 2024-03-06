@@ -5,7 +5,7 @@
     <arg name="pos_x" default="0" />
     <arg name="pos_y" default="-5" />
     <arg name="pos_z" default="0" />
-    <rosparam file="$(find fw_control)/config/params_ibvs.yaml"/>
+    <rosparam file="$(find tracking_uav_control)/config/params_ibvs.yaml"/>
     
 	
 	<include file="$(find px4)/launch/mavros_posix_sitl.launch">

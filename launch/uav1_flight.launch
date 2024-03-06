@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 	<group ns="uav1">
-		<node pkg="fw_control" name="uav_control" type="uav_control" output="screen" />
+		<node pkg="tracking_uav_control" name="uav_control" type="uav_control" output="screen" />
 	</group>
 
 </launch>

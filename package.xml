@@ -2,7 +2,7 @@
 <package format="2">
   <name>tracking_uav_control</name>
   <version>0.0.0</version>
-  <description>The fw_control package</description>
+  <description>The tracking_uav_control package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->

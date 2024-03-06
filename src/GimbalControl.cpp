@@ -12,9 +12,9 @@ GimbalControl::GimbalControl()
     fw_pose_sub = nh.subscribe<nav_msgs::Odometry>
             ("base_pose_ground_truth", 10, &GimbalControl::getFwPose, this);
     img_detect_sub = nh.subscribe<darknet_ros_msgs::BoundingBoxes>
-            ("/darknet_ros/bounding_boxes", 10, &GimbalControl::getDetectInfo, this);
+            ("darknet_ros/bounding_boxes", 10, &GimbalControl::getDetectInfo, this);
     detect_object_sub = nh.subscribe<darknet_ros_msgs::ObjectCount>
-            ("/darknet_ros/found_object", 10, &GimbalControl::checkIsDetect, this);
+            ("darknet_ros/found_object", 10, &GimbalControl::checkIsDetect, this);
     cameraInfo_sub = nh.subscribe<sensor_msgs::CameraInfo>
             ("camera_ir/camera/color/camera_info", 10, &GimbalControl::getCameraInfo, this);
     camerahov_sub = nh.subscribe<std_msgs::Float64>

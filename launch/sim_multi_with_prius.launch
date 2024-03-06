@@ -3,7 +3,7 @@
     <arg name="vehicle" default="miniyy_gimbal_camera" />
 	<arg name="background" default="empty" />
 
-	<include file="$(find fw_control)/launch/multi_uav_mavros_sitl.launch">
+	<include file="$(find tracking_uav_control)/launch/multi_uav_mavros_sitl.launch">
 		<arg name="vehicle" value="$(arg vehicle)"/>
 		<arg name="world" value="$(find mavlink_sitl_gazebo)/worlds/$(arg background).world"/>
 	</include>
