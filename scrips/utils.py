@@ -3,6 +3,9 @@ import numpy as np
 import math as m
 from tf.transformations import quaternion_matrix
 
+def isInvertible(a):
+    return a.shape[0] == a.shape[1] and np.linalg.matrix_rank(a) == a.shape[0]
+
 def Rx(theta):
     return np.matrix([[ 1,            0,             0],
                         [ 0, m.cos(theta), -m.sin(theta)],

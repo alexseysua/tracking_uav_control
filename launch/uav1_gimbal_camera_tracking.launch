@@ -2,8 +2,8 @@
 <launch>
 
 	<group ns="uav1">
-		<node pkg="fw_control" name="gimbal_control" type="gimbal_control" output="screen" />
-		<rosparam file="$(find fw_control)/config/params_ibvs.yaml"/>
+		<node pkg="tracking_uav_control" name="gimbal_control" type="gimbal_control" output="screen" />
+		<rosparam file="$(find tracking_uav_control)/config/params_ibvs.yaml"/>
 	</group>
 
 </launch>

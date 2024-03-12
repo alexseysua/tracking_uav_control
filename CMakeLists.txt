@@ -63,6 +63,7 @@ add_message_files(
   CameraFeatures.msg
   EstimateOutput.msg
   Trajectory3D.msg
+  LSEDepth.msg
 )
 
 ## Generate services in the 'srv' folder
